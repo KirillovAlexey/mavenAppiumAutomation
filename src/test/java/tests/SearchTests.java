@@ -1,5 +1,6 @@
 package tests;
 
+import io.appium.java_client.AppiumDriver;
 import lib.CoreTestsCase;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
@@ -34,7 +35,7 @@ public class SearchTests extends CoreTestsCase {
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();
         searchPageObject.typeSearchLine("Java");
-        searchPageObject.waitForSearchResult("Object-oriented programming language");
+        searchPageObject.waitForSearchResult("bject-oriented programming language");
     }
 
     @Test
@@ -58,14 +59,18 @@ public class SearchTests extends CoreTestsCase {
                 "Articles less that 1",
                 countArticles > 1);
         searchPageObject.clickCancelSearch();
-        searchPageObject.typeSearchLine("Search…");
+        if (driver instanceof AppiumDriver) {
+            searchPageObject.typeSearchLine("Search…");
+        } else {
+            searchPageObject.waitForCancelButtonDisappear();
+        }
     }
 
     @Test
     public void testSearchArticleByTitleAndDescription() {
         String searchWord = "Java";
-        String title = "Java (programming language)";
-        String description = "Object-oriented programming language";
+        String title = "ava (programming language)";
+        String description = "bject-oriented programming language";
 
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();

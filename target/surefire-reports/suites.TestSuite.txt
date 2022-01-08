@@ -1,0 +1,67 @@
+-------------------------------------------------------------------------------
+Test set: suites.TestSuite
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 272.914 s <<< FAILURE! - in suites.TestSuite
+testCheckTitleEx6(tests.ArticleTests)  Time elapsed: 17.712 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: Cannot find title in Article
+ (tried for 0 second(s) with 500 milliseconds interval)
+	at tests.ArticleTests.testCheckTitleEx6(ArticleTests.java:60)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NB58-017', ip: '192.168.1.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_311'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, databaseEnabled: false, desired: {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, deviceName: AndroidTestDevice, orientation: PORTRAIT, platformName: android, platformVersion: 8.0}, deviceApiLevel: 26, deviceManufacturer: Google, deviceModel: Android SDK built for x86, deviceName: emulator-5554, deviceScreenDensity: 480, deviceScreenSize: 1080x1920, deviceUDID: emulator-5554, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, orientation: PORTRAIT, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 8.0.0, statBarHeight: 72, takesScreenshot: true, viewportRect: {height: 1704, left: 0, top: 72, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: bcbf7fda-b42c-4d5e-b9ba-92c192f50abe
+*** Element info: {Using=id, value=org.wikipedia:id/view_page_title_text}
+	at tests.ArticleTests.testCheckTitleEx6(ArticleTests.java:60)
+
+testCheckWordIntoEachFindArticle(tests.ArticleTests)  Time elapsed: 13.571 s  <<< ERROR!
+org.openqa.selenium.StaleElementReferenceException: 
+The element 'By.xpath: //*[contains(@text, 'Search Wikipedia')]' does not exist in DOM anymore
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NB58-017', ip: '192.168.1.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_311'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, databaseEnabled: false, desired: {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, deviceName: AndroidTestDevice, orientation: PORTRAIT, platformName: android, platformVersion: 8.0}, deviceApiLevel: 26, deviceManufacturer: Google, deviceModel: Android SDK built for x86, deviceName: emulator-5554, deviceScreenDensity: 480, deviceScreenSize: 1080x1920, deviceUDID: emulator-5554, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, orientation: PORTRAIT, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 8.0.0, statBarHeight: 72, takesScreenshot: true, viewportRect: {height: 1704, left: 0, top: 72, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: 9203b519-2a63-418e-bae8-6e4279735492
+	at tests.ArticleTests.testCheckWordIntoEachFindArticle(ArticleTests.java:43)
+
+testSwipeArticle(tests.ArticleTests)  Time elapsed: 23.961 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: Cannot find element by locator
+ (tried for 1 second(s) with 500 milliseconds interval)
+	at tests.ArticleTests.testSwipeArticle(ArticleTests.java:21)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NB58-017', ip: '192.168.1.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_311'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, databaseEnabled: false, desired: {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, deviceName: AndroidTestDevice, orientation: PORTRAIT, platformName: android, platformVersion: 8.0}, deviceApiLevel: 26, deviceManufacturer: Google, deviceModel: Android SDK built for x86, deviceName: emulator-5554, deviceScreenDensity: 480, deviceScreenSize: 1080x1920, deviceUDID: emulator-5554, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, orientation: PORTRAIT, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 8.0.0, statBarHeight: 72, takesScreenshot: true, viewportRect: {height: 1704, left: 0, top: 72, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: 3a40f1c7-663c-41ce-a997-fc0fbb883cca
+*** Element info: {Using=xpath, value=//*[@text = 'View page in browser']}
+	at tests.ArticleTests.testSwipeArticle(ArticleTests.java:21)
+
+testSaveArticleToMyList(tests.MyListsTests)  Time elapsed: 35.908 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: Cannot find saved article by title 'Java (programming language)'
+ (tried for 15 second(s) with 500 milliseconds interval)
+	at tests.MyListsTests.testSaveArticleToMyList(MyListsTests.java:42)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NB58-017', ip: '192.168.1.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_311'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, databaseEnabled: false, desired: {androidNaturalOrientation: true, app: C:\Users\amoroz\Desktop\Jav..., appActivity: .main.MainActivity, appPackage: org.wikipedia, automationName: Appium, deviceName: AndroidTestDevice, orientation: PORTRAIT, platformName: android, platformVersion: 8.0}, deviceApiLevel: 26, deviceManufacturer: Google, deviceModel: Android SDK built for x86, deviceName: emulator-5554, deviceScreenDensity: 480, deviceScreenSize: 1080x1920, deviceUDID: emulator-5554, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, orientation: PORTRAIT, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 8.0.0, statBarHeight: 72, takesScreenshot: true, viewportRect: {height: 1704, left: 0, top: 72, width: 1080}, warnings: {}, webStorageEnabled: false}
+Session ID: acec93d4-2318-46ab-97a6-8a3d52e22ec3
+*** Element info: {Using=xpath, value=//*[contains(@text, 'Java (programming language)')]}
+	at tests.MyListsTests.testSaveArticleToMyList(MyListsTests.java:42)
+
+testAddArticleAndRemoveAnotherArticleFromBookmarksEx5(tests.MyListsTests)  Time elapsed: 21.387 s  <<< ERROR!
+java.lang.NullPointerException
+	at tests.MyListsTests.testAddArticleAndRemoveAnotherArticleFromBookmarksEx5(MyListsTests.java:57)
+

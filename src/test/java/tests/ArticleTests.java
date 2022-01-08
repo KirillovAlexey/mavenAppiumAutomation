@@ -26,7 +26,7 @@ public class ArticleTests extends CoreTestsCase {
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();
         searchPageObject.typeSearchLine("Java");
-        searchPageObject.clickByArticleWithSubString("Object-oriented programming language");
+        searchPageObject.clickByArticleWithSubString("Java (programming language)");
 
         ArticlePageObject articlePageObject = ArticlePageObjectFactory.get(driver);
         String article_title = articlePageObject.getArticleTitle();
@@ -53,7 +53,7 @@ public class ArticleTests extends CoreTestsCase {
         searchPageObject.initSearchInput();
         searchPageObject.typeSearchLine("Java");
 
-        String searchNameArticle = "Java (programming language)";
+        String searchNameArticle = "ava (programming language)";
         searchPageObject.clickByArticleWithSubString(searchNameArticle);
 
         ArticlePageObject articlePageObject = ArticlePageObjectFactory.get(driver);

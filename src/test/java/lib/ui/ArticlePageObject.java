@@ -1,8 +1,8 @@
 package lib.ui;
 
-import io.appium.java_client.AppiumDriver;
 import lib.Platform;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class ArticlePageObject extends MainPageObject {
 
@@ -11,6 +11,7 @@ abstract public class ArticlePageObject extends MainPageObject {
             FOOTER_ELEMENT,
             OPTIONS_BUTTON,
             OPTIONS_ADD_TO_MY_LIST_BUTTON,
+            OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
             ADD_TO_MY_LIST_OVERLAY,
             MY_LIST_NAME_INPUT,
             MY_LIST_OK_BUTTON,
@@ -18,7 +19,7 @@ abstract public class ArticlePageObject extends MainPageObject {
             ADD_TO_MY_CREATED_LIST_PREVIOUS,
             ADD_NEW_FOLDER_NAME;
 
-    public ArticlePageObject(AppiumDriver driver) {
+    public ArticlePageObject(RemoteWebDriver driver) {
         super(driver);
     }
 
@@ -33,8 +34,10 @@ abstract public class ArticlePageObject extends MainPageObject {
         WebElement titleElement = waitForTitleElement();
         if (Platform.getInstance().isAndroid()) {
             return titleElement.getAttribute("text");
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             return titleElement.getAttribute("name");
+        } else {
+            return titleElement.getText();
         }
     }
 
@@ -54,10 +57,15 @@ abstract public class ArticlePageObject extends MainPageObject {
                     "Cannot find the end of article",
                     40
             );
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             this.swipeUpTillElementAppear(
                     FOOTER_ELEMENT,
                     "Cannot find the end of Article",
+                    40);
+        } else {
+            this.scrollWebPageTillElementNotVisible(
+                    FOOTER_ELEMENT,
+                    "Cannot find the end of article",
                     40);
         }
     }
@@ -127,16 +135,34 @@ abstract public class ArticlePageObject extends MainPageObject {
     }
 
     public void closeArticle() {
-        this.waitForElementAndClick(CLOSE_ARTICLE_BUTTON,
-                "Cannot find close article button 'X'",
-                5);
+        if (Platform.getInstance().isAndroid() || Platform.getInstance().isIOS()) {
+            this.waitForElementAndClick(CLOSE_ARTICLE_BUTTON,
+                    "Cannot find close article button 'X'",
+                    5);
+        } else
+            System.out.println("Method closeArticle() do nothing platform" + Platform.getInstance().getPlatformVar());
     }
 
     public void addArticlesToMySaved() {
+        if (Platform.getInstance().isMw()) {
+            removeArticleFromSavedIfItAdded();
+        }
         this.waitForElementAndClick(
                 OPTIONS_ADD_TO_MY_LIST_BUTTON,
                 "Cannot find option to add article to reading list",
                 5);
+    }
+
+    public void removeArticleFromSavedIfItAdded() {
+        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)) {
+            this.waitForElementAndClick(
+                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    "Cannot click button to remove Article",
+                    1);
+            this.waitForElementPresent(
+                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    "Cannot find button to add an article to saved list after removing");
+        }
     }
 
     /*TEMPLATES METHODS*/

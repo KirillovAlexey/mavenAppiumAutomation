@@ -1,16 +1,17 @@
 package lib.ui;
 
-import io.appium.java_client.AppiumDriver;
 import lib.Platform;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class MyListsPageObject extends MainPageObject {
 
     protected static String
             FOLDER_BY_NAME,
             ARTICLE_BY_TITLE,
-            OPEN_BOOKMARK;
+            OPEN_BOOKMARK,
+            REMOVE_FROM_SAVED_BUTTON;
 
-    public MyListsPageObject(AppiumDriver driver) {
+    public MyListsPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 
@@ -25,12 +26,30 @@ abstract public class MyListsPageObject extends MainPageObject {
     public void swipeByArticleToDelete(String articleTitle) {
         this.waitForArticleToAppearByTitle(articleTitle);
         String articleTitleXpath = getSavedArticleXpathByTitle(articleTitle);
-        this.swipeElementToLeft(
-                articleTitleXpath,
-                "Cannot find save article" + articleTitle);
+
+        if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
+            this.swipeElementToLeft(
+                    articleTitleXpath,
+                    "Cannot find save article" + articleTitle);
+            if (Platform.getInstance().isIOS()) {
+                this.clickElementAndToRightUpperCorner(articleTitleXpath,
+                        "Cannot find save article" + articleTitle);
+            }
+            this.waitForArticleToDisappearByTitle(articleTitle);
+        } else {
+            String removeLocator = getRemoveButtonByTitle(articleTitle);
+            this.waitForElementAndClick(
+                    removeLocator,
+                    "Cannot click button to remove Article from save",
+                    10
+            );
+        }
         if (Platform.getInstance().isIOS()) {
             this.clickElementAndToRightUpperCorner(articleTitleXpath,
-                    "Cannot find save article" + articleTitle);
+                    "Cannot find saved article");
+        }
+        if (Platform.getInstance().isMw()) {
+            driver.navigate().refresh();
         }
         this.waitForArticleToDisappearByTitle(articleTitle);
     }
@@ -71,6 +90,10 @@ abstract public class MyListsPageObject extends MainPageObject {
 
     private static String getSavedArticleXpathByTitle(String articleTitle) {
         return ARTICLE_BY_TITLE.replace("{TITLE}", articleTitle);
+    }
+
+    private static String getRemoveButtonByTitle(String articleTitle) {
+        return REMOVE_FROM_SAVED_BUTTON.replace("{TITLE}", articleTitle);
     }
     /*TEMPLATES METHODS*/
 }
