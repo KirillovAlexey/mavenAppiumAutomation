@@ -9,7 +9,8 @@ abstract public class MyListsPageObject extends MainPageObject {
             FOLDER_BY_NAME,
             ARTICLE_BY_TITLE,
             OPEN_BOOKMARK,
-            REMOVE_FROM_SAVED_BUTTON;
+            REMOVE_FROM_SAVED_BUTTON,
+            CHECK_STARS_FOR_REMAINING_ANOTHER_ARTICLE;
 
     public MyListsPageObject(RemoteWebDriver driver) {
         super(driver);
@@ -79,6 +80,14 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    public void checkOutIsFlagUnwatchToArticle(String href) {
+        String articleTitleXpath = getRemainingArticle(href);
+        this.waitForElementPresent(
+                articleTitleXpath,
+                "Cannot find saved article by href '" + href + "'",
+                15);
+    }
+
     /*TEMPLATES METHODS*/
     private static String getFolderXpathByName(String nameFolder) {
         return FOLDER_BY_NAME.replace("{FOLDER_NAME}", nameFolder);
@@ -94,6 +103,10 @@ abstract public class MyListsPageObject extends MainPageObject {
 
     private static String getRemoveButtonByTitle(String articleTitle) {
         return REMOVE_FROM_SAVED_BUTTON.replace("{TITLE}", articleTitle);
+    }
+
+    private static String getRemainingArticle(String href) {
+        return CHECK_STARS_FOR_REMAINING_ANOTHER_ARTICLE.replace("{SUBSTRING_HREF}", href);
     }
     /*TEMPLATES METHODS*/
 }

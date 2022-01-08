@@ -9,6 +9,7 @@ public class MWMyListsPageObject extends MyListsPageObject {
         ARTICLE_BY_TITLE = "xpath://li[@class='page-summary with-watchstar']//h3[contains(text(),'{TITLE}')]";
         //OPEN_BOOKMARK = "xpath://*[contains(@text,'{{BOOKMARK}}')]/../../..";
         REMOVE_FROM_SAVED_BUTTON = "xpath://h3[contains(text(),'{TITLE}')]//..//..//a[@aria-controls='mw-watchlink-notification']";
+        CHECK_STARS_FOR_REMAINING_ANOTHER_ARTICLE = "xpath://a[contains(@href,'?title={SUBSTRING_HREF}&action=unwatch')]";
     }
 
     public MWMyListsPageObject(RemoteWebDriver driver) {
