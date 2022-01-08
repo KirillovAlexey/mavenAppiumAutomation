@@ -1,5 +1,6 @@
 package lib.ui;
 
+import lib.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -112,11 +113,17 @@ abstract public class SearchPageObject extends MainPageObject {
     public void checkFindsArticleInSearchingList() {
         this.getFindsElements(ADD_SEARCH_ARTICLE_TO_LIST);
         for (WebElement article : this.list) {
-            //System.out.println(article.getText());
-            this.waitForElementPresent(
-                    ADD_SEARCH_ARTICLE_TO_LIST
-                            + "[@data-title='" + article.getAttribute("data-title") + "']",
-                    "Cannot find this article" + article);
+            if (Platform.getInstance().isMw()) {
+                this.waitForElementPresent(
+                        ADD_SEARCH_ARTICLE_TO_LIST +
+                                "[@data-title='" + article.getAttribute("data-title") + "']",
+                        "Cannot find this article" + article);
+            } else {
+                this.waitForElementPresent(
+                        ADD_SEARCH_ARTICLE_TO_LIST +
+                                "[@text='" + article.getText() + "']",
+                        "Cannot find this article" + article);
+            }
         }
     }
 
