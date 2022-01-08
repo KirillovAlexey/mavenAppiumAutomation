@@ -109,12 +109,13 @@ abstract public class SearchPageObject extends MainPageObject {
         this.checkWordInputAllUrls(list, searchWord);
     }
 
-    public void checkFindsArticleInSearchingList(String tmpl) {
-        this.list.addAll(driver.findElementsById(ADD_SEARCH_ARTICLE_TO_LIST));
+    public void checkFindsArticleInSearchingList() {
+        this.getFindsElements(ADD_SEARCH_ARTICLE_TO_LIST);
         for (WebElement article : this.list) {
-            System.out.println(article.getText());
+            //System.out.println(article.getText());
             this.waitForElementPresent(
-                    article.getAttribute("resource-id"),
+                    ADD_SEARCH_ARTICLE_TO_LIST
+                            + "[@data-title='" + article.getAttribute("data-title") + "']",
                     "Cannot find this article" + article);
         }
     }

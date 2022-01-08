@@ -13,13 +13,9 @@ public class MWSearchPageObject extends SearchPageObject {
         SEARCH_CANCEL_BUTTON = "xpath://div[@class='header-action']//button[@type='button']";
         SEARCH_RESULT_ELEMENT = "xpath://div[@class='results']//li[@class='page-summary']";
         SEARCH_EMPTY_RESULT_ELEMENT = "xpath://p[@class='without-results']";
-        ADD_SEARCH_ARTICLE_TO_LIST = "id:org.wikipedia:id/page_list_item_title";
+        ADD_SEARCH_ARTICLE_TO_LIST = "xpath://a[@class='title ']";
         SEARCH_ARTICLE_BY_TITLE_AND_DESCRIPTION =
-                "xpath://[@resource-id='org.wikipedia:id/page_list_item_container']" +
-                        "//[contains(text(),'{TITLE}')]" +
-                        "//.." +
-                        "//*[contains(text(),'{DESCRIPTION}')]";
-
+                "xpath://li[contains(@title,'{TITLE}')]//div[contains(text(),'{DESCRIPTION}')]";
         // тот что нужен для поиска совпадения в TITLE статьи - //a[@class='title ']//h3//*[contains(text(),'Java')]
         ////a[@class='title ']//h3//strong[text()='Java']
         //a[@class='title ']//h3//strong[contains(text(),'Java')]

@@ -6,22 +6,20 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import lib.Platform;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class MainPageObject {
     protected RemoteWebDriver driver;
-    protected List<WebElement> list = new ArrayList();
+    protected List<WebElement> list = new LinkedList<WebElement>();
 
     public MainPageObject(RemoteWebDriver driver) {
         this.driver = driver;
@@ -239,8 +237,9 @@ public class MainPageObject {
 
     public List<WebElement> getFindsElements(String locator) {
         By by = this.getLocatorByString(locator);
+        //this.list.addAll(driver.findElements(by));
         list = driver.findElements(by);
-        return list;
+        return this.list;
     }
 
     public void assertElementsNotPresent(String locator, String message) {

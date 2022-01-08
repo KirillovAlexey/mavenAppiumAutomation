@@ -75,7 +75,6 @@ public class SearchTests extends CoreTestsCase {
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();
         searchPageObject.typeSearchLine(searchWord);
-        //searchPageObject.checkSearchWordInFindsArticles(searchWord);
         searchPageObject.waitForElementByTitleAndDescription(
                 title,
                 description);
@@ -84,5 +83,7 @@ public class SearchTests extends CoreTestsCase {
         assertTrue(
                 "Articles less that 3",
                 countArticles >= 3);
+        //searchPageObject.getArticlesToTheSearchResults(){ }
+        searchPageObject.checkFindsArticleInSearchingList();
     }
 }
