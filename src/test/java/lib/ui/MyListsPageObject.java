@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -16,6 +17,7 @@ abstract public class MyListsPageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Open folder bookmarks")
     public void openFolderByName(String nameFolder) {
         String folderNameXpath = getFolderXpathByName(nameFolder);
         this.waitForElementAndClick(
@@ -24,6 +26,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Remove article from bookmarks")
     public void swipeByArticleToDelete(String articleTitle) {
         this.waitForArticleToAppearByTitle(articleTitle);
         String articleTitleXpath = getSavedArticleXpathByTitle(articleTitle);
@@ -36,7 +39,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 this.clickElementAndToRightUpperCorner(articleTitleXpath,
                         "Cannot find save article" + articleTitle);
             }
-            this.waitForArticleToDisappearByTitle(articleTitle);
+            //this.waitForArticleToDisappearByTitle(articleTitle);
         } else {
             String removeLocator = getRemoveButtonByTitle(articleTitle);
             this.waitForElementAndClick(
@@ -55,6 +58,7 @@ abstract public class MyListsPageObject extends MainPageObject {
         this.waitForArticleToDisappearByTitle(articleTitle);
     }
 
+    @Step("Waiting article to disappear by title")
     public void waitForArticleToDisappearByTitle(String articleTitle) {
         String articleTitleXpath = getSavedArticleXpathByTitle(articleTitle);
         this.waitForElementNotPresent(
@@ -63,6 +67,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Waiting article to appear by title")
     public void waitForArticleToAppearByTitle(String articleTitle) {
         String articleTitleXpath = getSavedArticleXpathByTitle(articleTitle);
         this.waitForElementPresent(
@@ -71,6 +76,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Saved article from bookmarks")
     public void clickByBookMark(String bookmark) {
         this.waitForArticleToAppearByTitle(bookmark);
         String bookmarkThis = getSavedArticleXpathByTitle(bookmark);
@@ -80,6 +86,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Check choice favorite bookmarks")
     public void checkOutIsFlagUnwatchToArticle(String href) {
         String articleTitleXpath = getRemainingArticle(href);
         this.waitForElementPresent(

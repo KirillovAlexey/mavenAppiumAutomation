@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -13,6 +14,7 @@ abstract public class NavigationUI extends MainPageObject {
         super(driver);
     }
 
+    @Step("Waiting and click button of navigation menu (without use Android and iOS)")
     public void openNavigation() {
         if (Platform.getInstance().isMw()) {
             this.waitForElementAndClick(OPEN_NAVIGATION, "Cannot find button navigation", 5);
@@ -20,6 +22,7 @@ abstract public class NavigationUI extends MainPageObject {
             System.out.println("Method openNavigation() do nothing platform" + Platform.getInstance().getPlatformVar());
     }
 
+    @Step("Waiting and click folder 'myBookmarks' favorite")
     public void clickMyLists() {
 
         if (Platform.getInstance().isMw()) {

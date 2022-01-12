@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,6 +23,7 @@ abstract public class SearchPageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Initializing the search field")
     public void initSearchInput() {
         this.waitForElementPresent(
                 SEARCH_INIT_ELEMENT,
@@ -32,6 +34,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Input words '{searchLine}' in the search field")
     public void typeSearchLine(String searchLine) {
         this.waitForElementAndSendKeys(
                 SEARCH_INPUT,
@@ -40,6 +43,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting results in searchList")
     public void waitForSearchResult(String subString) {
         String searchResultXpath = getResultSearchElement(subString);
         this.waitForElementPresent(
@@ -48,18 +52,21 @@ abstract public class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Waiting button for cancel search result")
     public void waitForCancelButtonAppear() {
         this.waitForElementPresent(
                 SEARCH_CANCEL_BUTTON,
                 "Cannot find search cancel button", 5);
     }
 
+    @Step("Waiting cancel search result disappear")
     public void waitForCancelButtonDisappear() {
         this.waitForElementNotPresent(
                 SEARCH_CANCEL_BUTTON,
                 "Search cancel button is still present", 5);
     }
 
+    @Step("Click the button 'cancel search' results")
     public void clickCancelSearch() {
         this.waitForCancelButtonAppear();
         this.waitForElementAndClick(
@@ -68,6 +75,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting and click to article with sub string search")
     public void clickByArticleWithSubString(String subString) {
         String searchResultXpath = getResultSearchElement(subString);
         this.waitForElementAndClick(
@@ -77,6 +85,7 @@ abstract public class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Getting count finds articles")
     public int getAmountOfFoundArticles() {
         this.waitForElementPresent(
                 SEARCH_RESULT_ELEMENT,
@@ -85,6 +94,7 @@ abstract public class SearchPageObject extends MainPageObject {
         return this.getAmountElements(SEARCH_RESULT_ELEMENT);
     }
 
+    @Step("Waiting empty result search")
     public void waitForEmptyResultsLabel() {
         this.waitForElementPresent(
                 SEARCH_EMPTY_RESULT_ELEMENT,
@@ -92,24 +102,28 @@ abstract public class SearchPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Making sure there are no results for the search")
     public void assertThereIsNoResultSearch() {
         this.assertElementsNotPresent(
                 SEARCH_RESULT_ELEMENT,
                 "We supposed not to find any results");
     }
 
+    @Step("Making sure that the search results are there")
     public void assertThereIsResultSearch() {
         this.assertElementsNotPresent(
                 SEARCH_RESULT_ELEMENT,
                 "We supposed not to find any results");
     }
 
+    @Step("Checking the word in the title of all search articles")
     public void checkSearchWordInFindsArticles(String searchWord) {
         this.list.clear();
         this.list.addAll(driver.findElementsById(ADD_SEARCH_ARTICLE_TO_LIST));
         this.checkWordInputAllUrls(list, searchWord);
     }
 
+    @Step("Checking the word in the title of all search articles №2?")
     public void checkFindsArticleInSearchingList() {
         this.getFindsElements(ADD_SEARCH_ARTICLE_TO_LIST);
         for (WebElement article : this.list) {
@@ -127,6 +141,7 @@ abstract public class SearchPageObject extends MainPageObject {
         }
     }
 
+    @Step("Waiting title and description articles")
     public void waitForElementByTitleAndDescription(String title, String description) {
         String searchXpath = getResultSearchElementForTitleAndDescriptions(
                 title, description);
@@ -138,6 +153,7 @@ abstract public class SearchPageObject extends MainPageObject {
     }
 
     /*TEMPLATES METHODS*/
+    @Step("Getting finally searchString")
     private static String getResultSearchElement(String subString) {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", subString);
     }
